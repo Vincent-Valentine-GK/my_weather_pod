@@ -1,0 +1,15 @@
+# Save the output of this file and use kubectl create -f to import
+# it into Kubernetes.
+#
+# Created with podman-5.5.0
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2025-05-18T20:05:52Z"
+  labels:
+    app: elatedherschel-pod
+  name: elatedherschel-pod
+spec:
+  containers:
+  - image: localhost/my_weather:0.0.1
+    name: my-weather
