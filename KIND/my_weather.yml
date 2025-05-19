@@ -7,8 +7,8 @@ kind: Pod
 metadata:
   creationTimestamp: "2025-05-18T20:05:52Z"
   labels:
-    app: elatedherschel-pod
-  name: elatedherschel-pod
+    app: my-weather-pod
+  name: my-weather-pod
 spec:
   containers:
   - image: localhost/my_weather:0.0.1
