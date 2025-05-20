@@ -2,10 +2,12 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: {{ .Values.appName }}-cron
+  name: "{{ .Values.appName }}-{{ .Values.environment }}-cron"
+  labels:
+    app: "{{ .Values.appName }}"
 spec:
   schedule: "0/5 * * * *"
-  concurrencyPolicy: "Replace"
+  concurrencyPolicy: "Allow"
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 1
   jobTemplate:

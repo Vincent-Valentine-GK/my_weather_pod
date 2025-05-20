@@ -1,6 +1,7 @@
 appName: my-weather-app
 namespace: develop
 podAnnotations: 1
+environment: dev
 
 image:
   name: localhost/my_weather
