@@ -5,7 +5,7 @@ metadata:
   name: {{ .Values.appName }}-cron
 spec:
   schedule: "0/5 * * * *"
-  concurrencyPolicy: "Forbid"
+  concurrencyPolicy: "Replace"
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 1
   jobTemplate:
