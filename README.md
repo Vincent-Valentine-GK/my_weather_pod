@@ -22,7 +22,7 @@ helm upgrade [name-of-app]-release --values [name-of-app]-release/values.yaml --
 
 
 ```
-helm upgrade [name-of-app]-release -f [folder of app]/values.yml --install --wait --cleanup-on-fail --history-max 1
+helm upgrade my-weather-release my-weather-pod-pkg --set-literal imageName="localhost/my_weather" --set-literal imageTag=0.0.2 --install --wait --cleanup-on-fail --history-max 1
 ```
 
 
@@ -43,3 +43,7 @@ helm uninstall [Release name]
 kubectl get all
 ```
 
+# Docker
+```
+podman build -t my_weather:0.0.1 .
+```

@@ -3,6 +3,9 @@ namespace: develop
 podAnnotations: 1
 environment: dev
 
+imageName: localhost/my_weather
+imageTag: 0.0.1
+
 image:
   name: localhost/my_weather
   repository: somerepo

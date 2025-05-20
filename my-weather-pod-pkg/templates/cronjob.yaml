@@ -6,8 +6,8 @@ metadata:
   labels:
     app: "{{ .Values.appName }}"
 spec:
-  schedule: "0/5 * * * *"
-  concurrencyPolicy: "Allow"
+  schedule: "0/2 * * * *"
+  concurrencyPolicy: "Forbid"
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 1
   jobTemplate:
@@ -15,11 +15,30 @@ spec:
       template:
         spec:
           containers:
-          - name: {{ .Values.appName }}-cron
-            image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
-            command:
-            - /usr/local/bin/python main.py
+          - name: "{{ .Values.appName }}-{{ .Values.environment }}-cron"
+            image: "{{ .Values.imageName }}:{{ .Values.imageTag }}"
             imagePullPolicy: IfNotPresent
           restartPolicy: Never
           imagePullSecrets:
             - name: {{ .Values.image.pullSecret_GHCR }}
+
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello-cron
+spec:
+  schedule: "0/2 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello-cron
+            image: busybox:1.28
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - date; echo Hello from the Kubernetes cluster
+          restartPolicy: OnFailure
