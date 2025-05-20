@@ -3,6 +3,12 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: {{ .Values.appName }}-cron
+  {{- with .Values.podAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 12 }}
+  {{- end }}
+  labels:
+    {{- include "app.selectorLabels" . | nindent 12 }}
 spec:
   schedule: "0/5 * * * *"
   concurrencyPolicy: "Replace"
