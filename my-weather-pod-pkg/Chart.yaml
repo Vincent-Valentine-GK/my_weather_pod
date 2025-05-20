@@ -1,5 +1,5 @@
 apiVersion: v2
-name: my-weather-pod
+name: my-weather-pkg
 description: A Helm chart for Kubernetes
 
 # A chart can be either an 'application' or a 'library' chart.
