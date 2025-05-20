@@ -2,4 +2,29 @@ appName: my-weather-app
 
 image:
   name: localhost/my_weather
+  repository: ""
   tag: 0.0.1
+  PullPolicy: Always
+  GHCR_PullSecret: "github-pull-secret"
+  ECR_PullSecret: "ecr-pull-secret"
+
+replicationCount: 1
+
+cpuRequest: "1000m"
+cpuLimit: "1000m"
+
+memRequest: "2Gi"
+memLimit: "2Gi"
+
+livenessPath: /actuator/health
+livenessPort: 8181
+livenessInitialDelaySeconds: 20
+livenessTimeoutSeconds: 5
+livenessPeriodSeconds: 10
+
+readinessPath: /actuator/health
+readinessPort: 8181
+readinessInitialDelaySeconds: 20
+readinessTimeoutSeconds: 5
+readinessPeriodSeconds: 10
+
