@@ -5,9 +5,9 @@ metadata:
   name: {{ .Values.appName }}-cron
 spec:
   schedule: "0/2 * * * *"
-  concurrencyPolicy: "Allow"
+  concurrencyPolicy: "Forbid"
   successfulJobsHistoryLimit: 3
-  failedJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
       template:
