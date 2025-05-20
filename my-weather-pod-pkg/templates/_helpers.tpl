@@ -1,3 +1,11 @@
+{{/*
+Expand the name of chart
+*/}}
+{{- define "app.name" -}}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+
 {{/* vim: set filetype=mustache: */}}
 
 {{/*
