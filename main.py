@@ -6,7 +6,7 @@ def current_time():
     """Prints Current time"""
     now = datetime.now()
     # current_time = now.strftime("%H:%M:%S")
-    current_time= datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     print(f"Current Time is: {current_time} CST")
 
 def run_command():
