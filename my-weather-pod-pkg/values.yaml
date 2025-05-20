@@ -2,11 +2,11 @@ appName: my-weather-app
 
 image:
   name: localhost/my_weather
-  repository: ""
+  repository: somerepo
   tag: 0.0.1
-  PullPolicy: Always
-  GHCR_PullSecret: "github-pull-secret"
-  ECR_PullSecret: "ecr-pull-secret"
+  pullPolicy: Always
+  pullSecret_GHCR: "github-pull-secret"
+  pullSecret_ECR: "ecr-pull-secret"
 
 replicationCount: 1
 

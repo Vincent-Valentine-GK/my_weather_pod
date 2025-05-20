@@ -5,6 +5,9 @@ metadata:
   name: {{ .Values.appName }}-cron
 spec:
   schedule: "0/2 * * * *"
+  concurrencyPolicy: "Allow"
+  succesfulJobHistoryLimit: 3
+  failedJobHistoryLimit: 3
   jobTemplate:
     spec:
       template:
@@ -13,4 +16,6 @@ spec:
           - name: {{ .Values.appName }}-cron
             image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
             imagePullPolicy: IfNotPresent
-          restartPolicy: OnFailure
+          restartPolicy: Never
+          imagePullSecrets:
+            - name: {{ .Values.image.pullSecret_GHCR }}
