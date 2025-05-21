@@ -42,3 +42,24 @@ spec:
             - -c
             - date; echo Hello from the Kubernetes cluster
           restartPolicy: OnFailure
+
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: curl-weather-cron
+spec:
+  schedule: "0/2 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: curl-weather-cron
+            image: localhost/curl-weather
+            imagePullPolicy: IfNotPresent
+            command:
+            - date; echo Hello World
+            - curl
+            - wttr.in/Nashville,TN
+          restartPolicy: OnFailure

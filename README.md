@@ -47,3 +47,10 @@ kubectl get all
 ```
 podman build -t my_weather:0.0.1 .
 ```
+
+
+### If using apline image
+```
+podman run --rm eae394372d02 curl wttr.in/Nashville,TN
+```
+

@@ -1,0 +1,20 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: curl-weather-cron
+spec:
+  schedule: "0/2 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: curl-weather-cron
+            image: localhost/curl-weather:0.0.2
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - curl wttr.in/Nashville,TN
+          restartPolicy: OnFailure
