@@ -56,10 +56,12 @@ spec:
         spec:
           containers:
           - name: curl-weather-cron
-            image: localhost/curl-weather
+            image: localhost/curl-weather:0.0.2
             imagePullPolicy: IfNotPresent
             command:
             - /bin/sh
-            - c
+            - -c
             - date; echo Hello World; curl wttr.in/Nashville,TN
           restartPolicy: OnFailure
+          imagePullSecrets:
+            - name: {{ .Values.image.pullSecret_GHCR }}
