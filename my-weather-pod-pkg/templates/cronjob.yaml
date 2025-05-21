@@ -59,7 +59,7 @@ spec:
             image: localhost/curl-weather
             imagePullPolicy: IfNotPresent
             command:
-            - date; echo Hello World
-            - curl
-            - wttr.in/Nashville,TN
+            - /bin/sh
+            - c
+            - date; echo Hello World; curl wttr.in/Nashville,TN
           restartPolicy: OnFailure

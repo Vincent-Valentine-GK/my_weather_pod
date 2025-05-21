@@ -16,5 +16,5 @@ spec:
             command:
             - /bin/sh
             - -c
-            - curl wttr.in/Nashville,TN
+            - date; echo Hello World; curl wttr.in/Nashville,TN
           restartPolicy: OnFailure
