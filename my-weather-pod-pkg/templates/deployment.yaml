@@ -27,37 +27,3 @@ spec:
           limits:
             memory: "128Mi" # 128 mebibytes 
             cpu: "100m"
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: {{ .Values.appName }}-curl
-  namespace: {{ .Values.namespace }}
-  labels:
-    app: {{ .Values.appName }}-curl
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: {{ .Values.appName }}-curl
-
-  template:
-    metadata:
-      labels:
-        app: {{ .Values.appName }}-curl
-    spec: # Pod spec
-      containers:
-      - name: {{ .Values.appName }}-curl
-        image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
-        resources:
-          requests:
-            memory: "16Mi" 
-            cpu: "50m"    # 50 milli cores (1/20 CPU)
-          limits:
-            memory: "128Mi" # 128 mebibytes 
-            cpu: "100m"
-        command:
-        - /bin/sh
-        - -c
-        - date; echo Hello World; curl wttr.in/Nashville,TN

@@ -2,33 +2,12 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: "{{ .Values.appName }}-{{ .Values.environment }}-cron"
-  labels:
-    app: "{{ .Values.appName }}"
-spec:
-  schedule: "0/2 * * * *"
-  concurrencyPolicy: "Forbid"
-  successfulJobsHistoryLimit: 3
-  failedJobsHistoryLimit: 1
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          containers:
-          - name: "{{ .Values.appName }}-{{ .Values.environment }}-cron"
-            image: "{{ .Values.imageName }}:{{ .Values.imageTag }}"
-            imagePullPolicy: IfNotPresent
-          restartPolicy: Never
-          imagePullSecrets:
-            - name: {{ .Values.image.pullSecret_GHCR }}
-
----
-apiVersion: batch/v1
-kind: CronJob
-metadata:
   name: hello-cron
 spec:
   schedule: "0/2 * * * *"
+  concurrencyPolicy: "Forbid"
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
       template:
@@ -47,15 +26,18 @@ spec:
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: curl-weather-cron
+  name: "{{ .Values.appName }}-{{ .Values.environment }}-cron"
 spec:
   schedule: "0/2 * * * *"
+  concurrencyPolicy: "Forbid"
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
       template:
         spec:
           containers:
-          - name: curl-weather-cron
+          - name: "{{ .Values.appName }}-{{ .Values.environment }}-cron"
             image: localhost/curl-weather:0.0.2
             imagePullPolicy: IfNotPresent
             command:
